@@ -210,6 +210,14 @@ window.SITE_DATA = {
   },
 ],
 
+  links: [
+    { label: "Google Scholar", url: "" },
+    { label: "ORCID", url: "https://orcid.org/0009-0005-2339-2881" },
+    { label: "GitHub", url: "https://github.com/XuanYaWangYiKunHe" },
+    { label: "ResearchGate", url: "" },
+    { label: "CV", url: "" },
+  ],
+  
   ui: {
     zh: {
       skip: "跳至主要内容", openNav: "打开导航", navAbout: "经历", navResearch: "研究", navPublications: "成果", navAwards: "获奖", navContact: "联系",
