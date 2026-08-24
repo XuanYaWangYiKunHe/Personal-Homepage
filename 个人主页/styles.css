@@ -445,9 +445,10 @@ button { font: inherit; }
 }
 .urban-map .maplibregl-canvas:active { cursor: grabbing; }
 .urban-map .maplibregl-ctrl-top-right {
-  top: 8px;
-  right: 8px;
+  top: 0;
+  right: 0;
 }
+.urban-map .maplibregl-ctrl-top-right .maplibregl-ctrl { margin: 4px 4px 0 0; }
 .urban-map .maplibregl-ctrl-group {
   overflow: hidden;
   border: 1px solid rgba(159, 24, 54, 0.2);
@@ -456,13 +457,13 @@ button { font: inherit; }
   box-shadow: none;
 }
 .urban-map .maplibregl-ctrl-group button {
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
 }
 .urban-map .maplibregl-ctrl-group button + button {
   border-top-color: rgba(159, 24, 54, 0.15);
 }
-.urban-map .maplibregl-ctrl-icon { opacity: 0.7; }
+.urban-map .maplibregl-ctrl-icon { background-size: 16px 16px; opacity: 0.7; }
 .campus-location-marker {
   display: flex;
   align-items: center;
@@ -726,7 +727,7 @@ button { font: inherit; }
   margin: -4px 0 8px;
   font-family: var(--serif);
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.5;
   text-align: justify;
   text-align-last: left;
@@ -749,7 +750,7 @@ button { font: inherit; }
 .award-list { border-top: 1px solid var(--line); }
 .award {
   display: grid;
-  grid-template-columns: 52px 1fr auto;
+  grid-template-columns: 52px minmax(0, 1fr) auto 48px;
   gap: 20px;
   align-items: baseline;
   padding: 18px 0;
@@ -759,11 +760,19 @@ button { font: inherit; }
 .award time { color: var(--accent); font-family: var(--mono); letter-spacing: 0.07em; }
 .award-index { font-size: 0.82rem; font-weight: 700; }
 .award time { font-size: 0.65rem; }
+.award-result {
+  justify-self: end;
+  color: var(--ink);
+  font-family: var(--cn-serif);
+  font-size: 0.86rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
 .award h3 {
   margin: -4px 0 8px;
   font-family: var(--serif);
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.5;
   text-align: justify;
   text-align-last: left;
@@ -787,7 +796,7 @@ button { font: inherit; }
 }
 .contact-copy h2 em { color: var(--accent); font-weight: 400; }
 .contact-panel { padding-top: 45px; }
-.contact-panel > p { max-width: 540px; margin: 0 0 40px; color: var(--muted); font-size: 0.9rem; line-height: 1.8; }
+.contact-panel > p { max-width: 540px; margin: 0 0 40px; color: var(--ink); font-size: 0.9rem; line-height: 1.8; }
 .contact-email {
   display: flex;
   justify-content: space-between;
@@ -795,9 +804,11 @@ button { font: inherit; }
   padding: 18px 0;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
+  color: var(--accent);
   text-decoration: none;
   font-family: var(--serif);
   font-size: clamp(1.15rem, 2vw, 1.65rem);
+  font-weight: 600;
 }
 .contact-email:hover { color: var(--accent); }
 .social-links { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 28px; }
@@ -1200,7 +1211,7 @@ footer a { justify-self: end; text-decoration: none; }
 }
 .about-me-detail {
   max-width: 820px;
-  color: #4f4b45;
+  color: var(--gold);
   font-size: 0.86rem;
   line-height: 1.9;
 }
@@ -1356,6 +1367,7 @@ footer a { justify-self: end; text-decoration: none; }
   border-radius: var(--card-radius);
   background: var(--surface);
   box-shadow: 0 10px 30px rgba(58, 48, 40, 0.035);
+  backdrop-filter: blur(7px);
   transition: top 200ms ease, color 200ms ease, background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
   cursor: pointer;
 }
@@ -1585,6 +1597,9 @@ footer::after {
   margin-bottom: 18px;
 }
 .profile-sidebar h1 {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.15em;
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(3.2rem, 5.4vw, 5.8rem);
@@ -1595,9 +1610,9 @@ footer::after {
 .profile-sidebar h1 span,
 .profile-sidebar h1 em { display: block; }
 .profile-sidebar h1 em {
-  margin: 0.3em 0 0 0.12em;
+  margin: 0;
   color: var(--accent);
-  font-size: 0.48em;
+  font-size: 0.34em;
   font-weight: 400;
   line-height: 1;
 }
@@ -1650,6 +1665,7 @@ footer::after {
 .profile-content .section-heading h2 {
   font-size: clamp(2.55rem, 4vw, 4.15rem);
 }
+.profile-content .about-me-section .section-heading .section-number,
 .profile-content .about-section .section-heading .section-number {
   grid-column: 1;
   grid-row: 1;
@@ -1657,13 +1673,15 @@ footer::after {
   position: relative;
   z-index: 1;
 }
+.profile-content .about-me-section .section-heading h2,
 .profile-content .about-section .section-heading h2 {
   grid-column: 1 / -1;
   grid-row: 1;
   width: 100%;
   text-align: center;
 }
-.profile-content .education-panel { width: 100%; padding: clamp(18px, 1.9vw, 24px); }
+.profile-content .education-panel,
+.profile-content .project-panel { width: 100%; padding: clamp(18px, 1.9vw, 24px); }
 .profile-content .contact-section {
   grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1.2fr);
   gap: clamp(34px, 5vw, 76px);
@@ -1832,7 +1850,8 @@ footer::after {
   .research-arrow { font-size: 2.8rem; }
   .publication { grid-template-columns: 36px 1fr; gap: 12px; }
   .publication-type { grid-column: 2; }
-  .award { grid-template-columns: 36px 1fr; gap: 12px; }
+  .award { grid-template-columns: 36px minmax(0, 1fr) auto; gap: 12px; }
+  .award-result { grid-column: 3; grid-row: 1; }
   .award time { grid-column: 2; justify-self: start; }
   .empty-note { padding: 28px 22px; }
   .contact-panel { width: 100%; margin-left: 0; padding: 26px; }

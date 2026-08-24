@@ -342,6 +342,7 @@ function renderAwards() {
         ${award.issuer ? `<p class="award-issuer">${localized(award.issuer)}</p>` : ""}
         ${award.detail ? `<p class="award-detail">${localized(award.detail)}</p>` : ""}
       </div>
+      ${award.result ? `<strong class="award-result">${localized(award.result)}</strong>` : ""}
       <time>${award.year || award.period || ""}</time>
     `;
     container.append(article);
