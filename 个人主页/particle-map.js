@@ -8,11 +8,10 @@
     { zh: "复旦大学校徽", en: "FUDAN UNIVERSITY SEAL", coordinate: "OFFICIAL MARK · EST. 1905" },
     { zh: "复旦老校门", en: "HISTORIC FUDAN GATE", coordinate: "FUDAN WAYPOINT / 02" },
     { zh: "子彬院", en: "ZIBIN COURTYARD", coordinate: "FUDAN WAYPOINT / 03" },
-    { zh: "复旦大学校徽", en: "FUDAN UNIVERSITY SEAL", coordinate: "OFFICIAL MARK · EST. 1905" },
-    { zh: "复旦大学校徽", en: "FUDAN UNIVERSITY SEAL", coordinate: "OFFICIAL MARK · EST. 1905" },
+    { zh: "博学而笃志，切问而近思", en: "FUDAN UNIVERSITY MOTTO", coordinate: "THE ANALECTS · ZIZHANG" },
   ];
 
-  // 所有轮廓均从本地保存的真实源图逐像素生成；这里不包含任何手绘建筑或校徽路径。
+  // 所有轮廓均从本地保存的真实源图或书法底稿逐像素生成；这里不包含手绘建筑、校徽或文字路径。
   const sealSource = {
     src: "./assets/fudan-identity-guideline.png",
     mode: "mask",
@@ -35,8 +34,11 @@
       contrast: 14,
       crop: { x: 55, y: 105, width: 1170, height: 535 },
     },
-    sealSource,
-    sealSource,
+    {
+      src: "./assets/fudan-motto-calligraphy.png",
+      mode: "ink-mask",
+      crop: { x: 0, y: 0, width: 1774, height: 887 },
+    },
   ];
 
   const SAMPLE_WIDTH = 960;
@@ -142,6 +144,9 @@
           const saturation = Math.max(red, green, blue) - Math.min(red, green, blue);
           keep = luminance[index] < 238 && saturation > 26 && blue > red * 1.08;
           strength = keep ? 255 - luminance[index] : 0;
+        } else if (spec.mode === "ink-mask") {
+          keep = luminance[index] < 238;
+          strength = keep ? 255 - luminance[index] : 0;
         } else {
           // Sobel 梯度 + 局部明暗差保留砖缝、瓦当、窗框、匾额和立面装饰等细节。
           const left = luminance[index - 1];
@@ -230,8 +235,7 @@
     const transitions = [
       { start: 0.18, end: 0.25, from: 0, to: 1 },
       { start: 0.38, end: 0.45, from: 1, to: 2 },
-      { start: 0.58, end: 0.65, from: 2, to: 3 },
-      { start: 0.78, end: 0.85, from: 3, to: 4 },
+      { start: 0.82, end: 0.9, from: 2, to: 3 },
     ];
     stageProgress = 0;
     for (const transition of transitions) {
@@ -276,20 +280,23 @@
     const toIndex = Math.min(stageNames.length - 1, fromIndex + 1);
     const rawMix = stageProgress - fromIndex;
     const mix = rawMix * rawMix * (3 - 2 * rawMix);
-    const scale = Math.min(viewportWidth * (viewportWidth < 700 ? 1.08 : 0.72), viewportHeight * 0.96) * 0.5;
-    // 首尾校徽停在右侧，老校门与子彬院停在左侧；桌面端两侧位置关于页面中心对称。
-    // 移动端缩小横向位移，避免主体被窄屏裁切，同时保留右—左—左—右的节奏。
+    const baseScale = Math.min(viewportWidth * (viewportWidth < 700 ? 1.08 : 0.72), viewportHeight * 0.96) * 0.5;
+    const scaleByStage = [1, 1, 1, 1.18];
+    const stageScale = scaleByStage[fromIndex] + (scaleByStage[toIndex] - scaleByStage[fromIndex]) * mix;
+    const scale = baseScale * stageScale;
+    // 首段校徽停在右侧，老校门与子彬院停在左侧，最终书法题字回到页面正中。
+    // 移动端缩小横向位移，避免主体被窄屏裁切。
     const centerRatios = viewportWidth < 700
-      ? [0.55, 0.45, 0.45, 0.55, 0.55]
-      : [0.71, 0.29, 0.29, 0.71, 0.71];
+      ? [0.55, 0.45, 0.45, 0.5]
+      : [0.71, 0.29, 0.29, 0.5];
     const fromCenterX = viewportWidth * centerRatios[fromIndex];
     const toCenterX = viewportWidth * centerRatios[toIndex];
     const centerX = fromCenterX + (toCenterX - fromCenterX) * mix;
     const centerY = viewportHeight * 0.53;
     const fromShape = shapes[fromIndex];
     const toShape = shapes[toIndex];
-    const emphasisByStage = [0.9, 1.16, 1.16, 0.9, 0.9];
-    const opacityByStage = [0.32, 0.55, 0.55, 0.32, 0.32];
+    const emphasisByStage = [0.9, 1.16, 1.16, 1.02];
+    const opacityByStage = [0.32, 0.55, 0.55, 0.36];
     const emphasis = emphasisByStage[fromIndex] + (emphasisByStage[toIndex] - emphasisByStage[fromIndex]) * mix;
     const opacity = opacityByStage[fromIndex] + (opacityByStage[toIndex] - opacityByStage[fromIndex]) * mix;
 
