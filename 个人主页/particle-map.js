@@ -277,7 +277,14 @@
     const rawMix = stageProgress - fromIndex;
     const mix = rawMix * rawMix * (3 - 2 * rawMix);
     const scale = Math.min(viewportWidth * (viewportWidth < 700 ? 1.08 : 0.72), viewportHeight * 0.96) * 0.5;
-    const centerX = viewportWidth < 700 ? viewportWidth * 0.55 : viewportWidth * 0.71;
+    // 首尾校徽停在右侧，老校门与子彬院停在左侧；桌面端两侧位置关于页面中心对称。
+    // 移动端缩小横向位移，避免主体被窄屏裁切，同时保留右—左—左—右的节奏。
+    const centerRatios = viewportWidth < 700
+      ? [0.55, 0.45, 0.45, 0.55, 0.55]
+      : [0.71, 0.29, 0.29, 0.71, 0.71];
+    const fromCenterX = viewportWidth * centerRatios[fromIndex];
+    const toCenterX = viewportWidth * centerRatios[toIndex];
+    const centerX = fromCenterX + (toCenterX - fromCenterX) * mix;
     const centerY = viewportHeight * 0.53;
     const fromShape = shapes[fromIndex];
     const toShape = shapes[toIndex];

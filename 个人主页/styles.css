@@ -6,6 +6,8 @@
   --line: #d7d1c7;
   --accent: #9f1836;
   --accent-dark: #711027;
+  --gold: #8f6418;
+  --gold-light: #e2bb63;
   --surface: rgba(255, 255, 255, 0.38);
   --surface-strong: rgba(255, 255, 255, 0.58);
   --soft-shadow: 0 18px 48px rgba(58, 48, 40, 0.07);
@@ -589,6 +591,7 @@ button { font: inherit; }
   max-width: none;
 }
 .education-logo--cugb img { width: 100%; height: 100%; object-fit: contain; }
+.education-logo--iop img { width: 100%; height: 100%; object-fit: contain; }
 .education-item time { width: 100%; color: var(--accent); font-family: var(--mono); font-size: 0.54rem; line-height: 1.55; letter-spacing: 0.04em; text-align: center; }
 .education-item h3 { margin: -5px 0 7px; font-family: var(--serif); font-size: 1.25rem; font-weight: 400; line-height: 1.3; }
 .education-title {
@@ -631,8 +634,8 @@ button { font: inherit; }
 .research-title h3 { margin: -7px 0 4px; font-family: var(--serif); font-size: 1.65rem; font-weight: 600; }
 .research-title p { margin: 0; color: var(--ink); font-family: var(--serif); font-size: 1rem; font-style: italic; font-weight: 400; }
 .research-item:hover .research-title p { color: #aaa59c; }
-.research-description { margin: -3px 0 0; color: #5c5851; font-size: 0.82rem; line-height: 1.85; }
-.research-item:hover .research-description { color: #ccc6bc; }
+.research-description { margin: -3px 0 0; color: var(--gold); font-size: 0.82rem; line-height: 1.85; }
+.research-item:hover .research-description { color: var(--gold-light); }
 .keywords { display: flex; flex-wrap: wrap; gap: 7px; margin: -3px 0 0; padding: 0; list-style: none; }
 .keywords li { padding: 5px 8px; border: 1px solid var(--line); font-family: var(--mono); font-size: 0.58rem; }
 .research-arrow { position: absolute; right: 0; bottom: 20px; color: rgba(159, 24, 54, 0.2); font-family: var(--serif); font-size: 3.5rem; font-style: italic; font-weight: 600; }
@@ -1102,8 +1105,10 @@ footer a { justify-self: end; text-decoration: none; }
 .portal-card small { color: var(--muted); font-size: 0.65rem; line-height: 1.6; }
 .portal-card > b { color: var(--accent); font-size: 0.9rem; font-weight: 400; }
 
+.about-me-card,
 .resume-summary,
-.education-panel {
+.education-panel,
+.project-panel {
   padding: clamp(26px, 3vw, 38px);
   border: 1px solid rgba(113, 109, 102, 0.2);
   border-radius: var(--card-radius);
@@ -1111,11 +1116,160 @@ footer a { justify-self: end; text-decoration: none; }
   box-shadow: 0 12px 36px rgba(58, 48, 40, 0.035);
   backdrop-filter: blur(7px);
 }
-.resume-grid { display: block; }
-.education-panel { width: min(100%, 800px); margin-left: 0; }
+.about-me-card {
+  display: grid;
+  gap: 22px;
+}
+.about-me-section .section-heading,
+.about-section .section-heading { margin-bottom: 18px; }
+.about-me-card p { margin: 0; }
+.about-me-lead {
+  max-width: 760px;
+  font-family: var(--cn-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.7;
+}
+.about-me-detail {
+  max-width: 820px;
+  color: #4f4b45;
+  font-size: 0.86rem;
+  line-height: 1.9;
+}
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.education-panel,
+.project-panel { width: 100%; margin: 0; }
+.experience-panel { min-width: 0; height: 100%; }
 .resume-kicker { margin-bottom: 18px; }
 .resume-summary .facts { margin-top: 38px; }
 .education-list { border-top-color: var(--line); }
+.experience-grid .education-list::before { left: 72px; }
+.experience-grid .education-item {
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 24px;
+  min-height: 112px;
+  padding: 13px 0;
+}
+.experience-grid .education-item::before { left: 66px; }
+.experience-grid .education-logo { --education-logo-size: 52px; }
+.experience-grid .education-item time { font-size: 0.46rem; }
+.experience-grid .education-item h3 { margin-top: -3px; font-size: 1rem; }
+.experience-grid .education-title { grid-template-columns: 1fr; gap: 3px; }
+.experience-grid .education-degree { font-size: 0.76em; text-align: left; }
+.experience-grid .education-school { font-size: 0.68rem; }
+.experience-grid .education-detail { margin-top: 5px !important; font-size: 0.6rem; }
+.project-list {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+.project-list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 53px;
+  width: 1px;
+  background: var(--line);
+}
+.project-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 18px;
+  min-height: 112px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.project-item::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 47px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.project-aside {
+  display: grid;
+  place-items: start center;
+  min-width: 0;
+}
+.project-aside span {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+  opacity: 0.42;
+}
+.project-body { min-width: 0; }
+.project-item h3 {
+  margin: -2px 0 5px;
+  font-family: var(--cn-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  margin: 0 0 5px;
+}
+.project-meta div {
+  min-width: 0;
+  padding-right: 5px;
+  border-right: 1px solid rgba(159, 24, 54, 0.15);
+}
+.project-meta div:last-child { border-right: 0; }
+.project-meta dt {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  letter-spacing: 0.04em;
+}
+.project-meta dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+  color: #4f4b45;
+  font-size: 0.5rem;
+  line-height: 1.4;
+}
+.project-item p { margin: 2px 0 0; font-size: 0.56rem; line-height: 1.45; }
+.project-role { color: var(--accent); font-weight: 500; }
+.project-organization,
+.project-detail { color: #57524b; }
+.project-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 5px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.project-keywords li {
+  padding: 2px 5px;
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.44rem;
+}
+.project-empty {
+  margin: 0;
+  padding: 22px 0 4px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.75;
+}
 
 .research-list {
   display: grid;
@@ -1150,7 +1304,7 @@ footer a { justify-self: end; text-decoration: none; }
 .research-title h3 { margin: 0 0 5px; font-size: 1.55rem; }
 .research-description { margin: 18px 0 16px; font-size: 0.78rem; line-height: 1.7; }
 .research-item:hover .research-code { color: #d95873; }
-.research-item:hover .research-description { color: #cbc6bd; }
+.research-item:hover .research-description { color: var(--gold-light); }
 .research-item:hover .research-title p { color: #aaa59c; }
 .research-item:hover .keywords li { border-color: #56524d; color: #e7e2d8; }
 .research-item .keywords { margin-top: auto; padding-right: 42px; }
@@ -1194,7 +1348,7 @@ footer a { justify-self: end; text-decoration: none; }
 }
 .research-item.expanded .research-code { grid-column: 1; color: var(--accent); }
 .research-item.expanded .research-title { grid-column: 1; margin-top: 32px; padding-right: 0; }
-.research-item.expanded .research-description { grid-column: 1; margin-top: 20px; padding-right: 0; color: #5c5851; }
+.research-item.expanded .research-description { grid-column: 1; margin-top: 20px; padding-right: 0; color: var(--gold); }
 .research-item.expanded .keywords { grid-column: 1; align-self: end; margin-top: 30px; padding-right: 0; }
 .research-item.expanded .research-title p { color: var(--ink); }
 .research-item.expanded .keywords li { color: var(--ink); border-color: var(--line); }
@@ -1264,9 +1418,10 @@ footer a { justify-self: end; text-decoration: none; }
 
 /* 新中式细节层：用朱砂折角、双线章法和书卷字体强化复旦文脉，不改变信息结构。 */
 .personal-meta-card,
+.about-me-card,
 .resume-summary,
 .education-panel,
-.research-item,
+.project-panel,
 .contact-panel {
   border-radius: 10px;
   background:
@@ -1275,6 +1430,14 @@ footer a { justify-self: end; text-decoration: none; }
     linear-gradient(rgba(159, 24, 54, 0.34), rgba(159, 24, 54, 0.34)) calc(100% - 11px) calc(100% - 11px) / 20px 1px no-repeat,
     linear-gradient(rgba(159, 24, 54, 0.34), rgba(159, 24, 54, 0.34)) calc(100% - 11px) calc(100% - 11px) / 1px 20px no-repeat,
     rgba(255, 255, 255, 0.36);
+}
+.research-item {
+  background:
+    linear-gradient(rgba(159, 24, 54, 0.52), rgba(159, 24, 54, 0.52)) 11px 11px / 20px 1px no-repeat,
+    linear-gradient(rgba(159, 24, 54, 0.52), rgba(159, 24, 54, 0.52)) 11px 11px / 1px 20px no-repeat,
+    linear-gradient(rgba(159, 24, 54, 0.34), rgba(159, 24, 54, 0.34)) calc(100% - 11px) calc(100% - 11px) / 20px 1px no-repeat,
+    linear-gradient(rgba(159, 24, 54, 0.34), rgba(159, 24, 54, 0.34)) calc(100% - 11px) calc(100% - 11px) / 1px 20px no-repeat,
+    rgba(255, 255, 255, 0.48);
 }
 .research-item:hover {
   background:
@@ -1410,6 +1573,8 @@ footer::after {
   gap: 14px 24px;
   margin-bottom: 30px;
 }
+.profile-content .about-me-section .section-heading,
+.profile-content .about-section .section-heading { margin-bottom: 18px; }
 .profile-content .section-heading > p:last-child {
   grid-column: 2;
   max-width: 560px;
@@ -1462,8 +1627,10 @@ footer::after {
   .about-grid { grid-template-columns: 1fr; }
   .facts { width: 70%; margin-left: 30%; }
   .resume-grid { grid-template-columns: 1fr; }
+  .experience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .resume-summary .facts { width: 100%; margin-left: 0; }
   .education-panel { width: min(100%, 800px); margin-left: 0; }
+  .project-panel { width: 100%; margin-left: 0; }
   .research-item { grid-template-columns: 0.5fr 1fr 1.5fr; }
   .keywords { grid-column: 2 / 4; }
   .contact-section { grid-template-columns: 1fr; }
@@ -1550,6 +1717,8 @@ footer::after {
   .about-grid { gap: 50px; }
   .facts { width: 100%; margin-left: 0; }
   .education-panel { width: 100%; margin-left: 0; }
+  .experience-grid { grid-template-columns: 1fr; }
+  .project-panel { width: 100%; margin-left: 0; }
   .education-list::before { left: 88px; }
   .education-item { grid-template-columns: 72px 1fr; gap: 32px; min-height: 145px; }
   .education-item::before { left: 84px; }
@@ -1630,11 +1799,13 @@ footer::after {
   .profile-focus-panel { grid-template-columns: 1fr; }
   .profile-focus-panel > a { border-top: 1px solid var(--line); }
   .resume-summary,
-  .education-panel { padding: 24px 20px; }
+  .education-panel,
+  .project-panel,
+  .about-me-card { padding: 24px 20px; }
   .education-list::before { display: none; }
-  .education-item { display: block; min-height: 0; }
-  .education-item::before { display: none; }
-  .education-item time { display: block; margin-bottom: 20px; }
+  .experience-grid .education-item { display: block; min-height: 0; }
+  .experience-grid .education-item::before { display: none; }
+  .experience-grid .education-item time { display: block; margin-bottom: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -24,8 +24,8 @@ window.SITE_DATA = {
       en: "I study advanced-node semiconductor devices and multiscale computational simulation, connecting physical mechanisms, numerical methods, and design–technology co-optimization.",
     },
     aboutLead: {
-      zh: "我是复旦大学集成电路与微纳电子创新学院的博士研究生。",
-      en: "I am a doctoral researcher at the School of Integrated Circuits and Micro-Nano Electronics Innovation, Fudan University.",
+      zh: "Hi!我叫易坤鹤，欢迎访问我的主页。我于2022年6月在中国北京的中国地质大学（北京）材料科学与工程学院取得材料科学与工程专业工学学士学位，本科的指导老师是材料科学与工程学院的李晓薇副教授。目前，我在复旦大学集成电路与微纳电子创新学院攻读博士学位，指导老师是陈时友教授。我的研究兴趣主要聚焦于半导体器件设计和计算仿真方法、基于密度泛函理论的第一性原理计算、人工智能技术驱动的多尺度仿真模拟方法、DTCO 设计-工艺协同优化。期待与您交流和合作！",
+      en: "Hi! My name is Yikun He, and welcome to my personal homepage. I received my B.Eng. degree in Materials Science and Engineering from the School of Materials Science and Technology, China University of Geosciences (Beijing) in June 2022, where I was advised by Associate Professor Xiaowei Li. I am currently pursuing my Ph.D. degree at the College of Integrated Circuits and Micro-Nano Electronics, Fudan University, under the supervision of Professor Shiyou Chen. My research interests primarily focus on semiconductor device design and computational modeling, first-principles calculations based on density functional theory (DFT), AI-driven multiscale simulation methods, and design-technology co-optimization (DTCO). I am always open to exchanging research ideas and exploring potential collaborations. Please feel free to get in touch!",
     },
     aboutDetail: {
       zh: "目前研究围绕先进节点器件的建模与优化展开，结合 TCAD、第一性原理计算与 DTCO 方法，探索从材料、器件到工艺与电路协同设计的高效仿真路径。",
@@ -70,7 +70,27 @@ window.SITE_DATA = {
         className: "cugb",
         alt: { zh: "中国地质大学（北京）校徽", en: "China University of Geosciences Beijing seal" },
       },
+
     },
+    {
+      period: "2024 — 2025",
+      major: { zh: "高性能无氟醚类锂离子电池电解液", en: "High-performance fluorine-free ether-based lithium-ion battery electrolyte" },
+      degree: { zh: "访问学生", en: "Visit students" },
+      institution: { zh: "中国科学院物理研究所", en: "Institute of Physics, Chinese Academy of Sciences" },
+      detail: { zh: "A01组 · 中国 北京", en: "SGroup A01 · Beijing, China" },
+      logo: {
+        src: "./assets/iop-cas-seal-transparent.png",
+        className: "iop",
+        alt: { zh: "中国科学院物理研究所院徽", en: "Institute of Physics, Chinese Academy of Sciences seal" },
+      },
+    },
+  ],
+
+  // 项目经历：按时间从近到远排列。示例字段：
+  // { period: "2025 — PRESENT", number: "项目编号", level: { zh: "项目级别", en: "Project level" }, title: { zh: "项目名称", en: "Project Name" }, role: { zh: "负责内容", en: "Role" }, organization: { zh: "所属单位", en: "Organization" }, detail: { zh: "项目简介", en: "Project summary" }, keywords: ["TCAD", "DFT"] }
+  projects: [
+    { period: "2025 — 2026", number: "202511415033", level: { zh: "国家级", en: "National level" }, title: { zh: "二维矿物铁电材料和新型二维铁电金属的机制研究和理论预测", en: "Mechanism research and theoretical prediction of two-dimensional mineral ferroelectric materials and new two-dimensional ferroelectric metals" }, role: { zh: "项目负责人", en: "Project Manager" }, organization: { zh: "中国地质大学（北京）材料科学与工程学院", en: "College of Materials Science and Engineering, China University of Geosciences (Beijing)" }, keywords: ["Ferroelectricity", "DFT"] },
+    { period: "2024 — 2025", number: "S202411415066", level: { zh: "省级", en: "Provincial" }, title: { zh: "共价键调节石墨烯层间距用于碱金属离子电池负极的性能模拟研究", en: "Simulation study on the performance of negative electrodes for alkali metal ion batteries using the modulation of graphene layer spacing by covalent bonds" }, role: { zh: "项目负责人", en: "Project Manager" }, organization: { zh: "中国地质大学（北京）材料科学与工程学院", en: "College of Materials Science and Engineering, China University of Geosciences (Beijing)" }, keywords: ["Lithium-ion battery", "DFT"] },
   ],
 
   research: [
@@ -220,20 +240,24 @@ window.SITE_DATA = {
   
   ui: {
     zh: {
-      skip: "跳至主要内容", openNav: "打开导航", navAbout: "经历", navResearch: "研究", navPublications: "成果", navAwards: "获奖", navContact: "联系",
+      skip: "跳至主要内容", openNav: "打开导航", navAbout: "关于我", navResearch: "研究", navPublications: "成果", navAwards: "获奖", navContact: "联系",
       doctoralResearcher: "博士研究生", contactMe: "与我联系", viewWork: "查看研究成果", handanCampus: "\u90af\u90f8校区", affiliation: "所属单位", locationLabel: "地点",
       profileLabel: "PROFILE / 个人简介", researchStatus: "研究进行中", fudanCampus: "复旦 · 上海", currentFocus: "研究方向", emailLabel: "邮件", hobbiesLabel: "爱好",
-      aboutTitle: "教育经历", aboutSubtitle: "教育背景、学术训练与阶段性经历。", profileSummary: "PROFILE / 个人简介", educationTitle: "EDUCATION / 教育背景",
+      aboutMeTitle: "关于我",
+      experienceTitle: "教育与项目经历", profileSummary: "PROFILE / 个人简介", educationTitle: "EDUCATION / 教育背景",
+      projectsTitle: "PROJECTS / 项目经历", projectTime: "项目时间", projectNumber: "项目编号", projectLevel: "项目级别", valuePending: "待补充", projectEmpty: "项目经历已预留，可在 site-data.js 的 projects 中填写。",
       researchTitle: "研究方向", researchSubtitle: "从原子尺度物理到器件与设计空间，关注可验证、可迁移的计算方法。",
       publicationsTitle: "代表性成果", publicationsSubtitle: "论文、会议报告与进行中的研究工作。", publicationEmpty: "成果列表已预留。在 site-data.js 中添加论文后，页面会自动生成条目。",
       awardsTitle: "获奖情况", awardsSubtitle: "奖学金、荣誉称号与学术竞赛获奖情况。", awardEmpty: "奖项列表已预留。在 site-data.js 中添加奖项后，页面会自动生成条目。",
       contactTitle: "欢迎讨论", contactText: "对先进器件、计算仿真或潜在的学术合作感兴趣？欢迎通过邮件联系。", backTop: "回到顶部 ↑",
     },
     en: {
-      skip: "Skip to content", openNav: "Open navigation", navAbout: "Experience", navResearch: "Research", navPublications: "Publications", navAwards: "Awards", navContact: "Contact",
+      skip: "Skip to content", openNav: "Open navigation", navAbout: "About", navResearch: "Research", navPublications: "Publications", navAwards: "Awards", navContact: "Contact",
       doctoralResearcher: "DOCTORAL RESEARCHER", contactMe: "Contact me", viewWork: "View research", handanCampus: "HANDAN CAMPUS", affiliation: "AFFILIATION", locationLabel: "LOCATION",
       profileLabel: "PROFILE / BIOGRAPHY", researchStatus: "Research in progress", fudanCampus: "FUDAN · SHANGHAI", currentFocus: "RESEARCH FOCUS", emailLabel: "EMAIL", hobbiesLabel: "INTERESTS",
-      aboutTitle: "Education", aboutSubtitle: "Education, academic training, and key stages.", profileSummary: "PROFILE / BIOGRAPHY", educationTitle: "EDUCATION / ACADEMIC TRAINING",
+      aboutMeTitle: "About Me",
+      experienceTitle: "Education & Projects", profileSummary: "PROFILE / BIOGRAPHY", educationTitle: "EDUCATION / ACADEMIC TRAINING",
+      projectsTitle: "PROJECTS / EXPERIENCE", projectTime: "TIME", projectNumber: "NUMBER", projectLevel: "LEVEL", valuePending: "To be added", projectEmpty: "This section is ready. Add entries to projects in site-data.js.",
       researchTitle: "Research", researchSubtitle: "From atomistic physics to devices and design spaces, with an emphasis on verifiable, transferable computational methods.",
       publicationsTitle: "Selected Work", publicationsSubtitle: "Publications, conference presentations, and research in progress.", publicationEmpty: "The publications section is ready. Add entries in site-data.js and they will appear here automatically.",
       awardsTitle: "Awards", awardsSubtitle: "Scholarships, honors, and academic competition awards.", awardEmpty: "The awards section is ready. Add entries in site-data.js and they will appear here automatically.",

@@ -174,6 +174,51 @@ function renderEducation() {
   });
 }
 
+function renderProjects() {
+  const container = document.getElementById("project-list");
+  const empty = document.getElementById("project-empty");
+  const projects = data.projects || [];
+  if (!container || !empty) return;
+  container.replaceChildren();
+  empty.hidden = projects.length > 0;
+  projects.forEach((project, index) => {
+    const article = document.createElement("article");
+    article.className = "project-item";
+    const labels = data.ui[locale];
+    const pending = labels.valuePending;
+    const organization = project.organization
+      ? `<p class="project-organization">${localized(project.organization)}</p>`
+      : "";
+    const role = project.role
+      ? `<p class="project-role">${localized(project.role)}</p>`
+      : "";
+    const detail = project.detail
+      ? `<p class="project-detail">${localized(project.detail)}</p>`
+      : "";
+    const keywords = project.keywords?.length
+      ? `<ul class="project-keywords">${project.keywords.map((keyword) => `<li>${keyword}</li>`).join("")}</ul>`
+      : "";
+    article.innerHTML = `
+      <div class="project-aside" aria-hidden="true">
+        <span>${String(index + 1).padStart(2, "0")}</span>
+      </div>
+      <div class="project-body">
+        <h3>${localized(project.title)}</h3>
+        <dl class="project-meta">
+          <div><dt>${labels.projectTime}</dt><dd>${project.period || pending}</dd></div>
+          <div><dt>${labels.projectNumber}</dt><dd>${localized(project.number) || pending}</dd></div>
+          <div><dt>${labels.projectLevel}</dt><dd>${localized(project.level) || pending}</dd></div>
+        </dl>
+        ${role}
+        ${organization}
+        ${detail}
+        ${keywords}
+      </div>
+    `;
+    container.append(article);
+  });
+}
+
 function renderResearch() {
   const container = document.getElementById("research-list");
   container.replaceChildren();
@@ -343,6 +388,7 @@ function renderLanguage() {
   renderHeroLinks();
   renderFacts();
   renderEducation();
+  renderProjects();
   renderResearch();
   renderPublications();
   renderAwards();

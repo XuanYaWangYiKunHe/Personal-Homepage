@@ -26,12 +26,12 @@
       rel="stylesheet"
     />
     <link href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20260824-typography-alignment2" />
+    <link rel="stylesheet" href="./styles.css?v=20260824-gold-research" />
     <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js" defer></script>
-    <script src="./site-data.js?v=20260824-compact-awards" defer></script>
-    <script src="./particle-map.js?v=20260824-fix1" defer></script>
+    <script src="./site-data.js?v=20260824-iop-logo" defer></script>
+    <script src="./particle-map.js?v=20260824-stage-sides" defer></script>
     <script src="./city-map.js?v=20260824-campus-label" defer></script>
-    <script src="./main.js?v=20260824-award-alignment" defer></script>
+    <script src="./main.js?v=20260824-compact-projects" defer></script>
   </head>
   <body>
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
@@ -119,16 +119,33 @@
 
         <div class="profile-content">
 
-        <section class="section about-section" id="about" aria-labelledby="about-title">
+        <section class="section about-me-section" id="about" aria-labelledby="about-me-title">
           <div class="section-heading reveal">
-            <p class="section-number">01 / EDUCATION</p>
-            <h2 id="about-title" data-i18n="aboutTitle">教育经历</h2>
-            <p data-i18n="aboutSubtitle">教育背景、学术训练与阶段性经历。</p>
+            <p class="section-number">ABOUT ME</p>
+            <h2 id="about-me-title" data-i18n="aboutMeTitle">关于我</h2>
           </div>
-          <div class="resume-grid">
-            <div class="education-panel reveal">
+          <div class="about-me-card reveal">
+            <p class="about-me-lead" id="about-lead"></p>
+            <p class="about-me-detail" id="about-detail"></p>
+          </div>
+        </section>
+
+        <section class="section about-section" id="education" aria-labelledby="experience-title">
+          <div class="section-heading reveal">
+            <p class="section-number">01 / EXPERIENCE</p>
+            <h2 id="experience-title" data-i18n="experienceTitle">教育与项目经历</h2>
+          </div>
+          <div class="resume-grid experience-grid">
+            <div class="experience-panel education-panel reveal">
               <p class="resume-kicker" data-i18n="educationTitle">EDUCATION / 教育背景</p>
               <div class="education-list" id="education-list"></div>
+            </div>
+            <div class="experience-panel project-panel reveal">
+              <p class="resume-kicker" data-i18n="projectsTitle">PROJECTS / 项目经历</p>
+              <div class="project-list" id="project-list"></div>
+              <p class="project-empty" id="project-empty" data-i18n="projectEmpty">
+                项目经历已预留，可在 site-data.js 的 projects 中填写。
+              </p>
             </div>
           </div>
         </section>
