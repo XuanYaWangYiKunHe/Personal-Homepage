@@ -166,21 +166,49 @@ window.SITE_DATA = {
   // 获奖情况：按时间从近到远排列。示例字段：
   // { year: "2026", title: { zh: "奖项名称", en: "Award Name" }, issuer: { zh: "颁发单位", en: "Issuer" }, detail: { zh: "补充说明", en: "Details" } }
   awards: [
-    { year: "2025", title: { zh: "青创北京2025年“挑战杯”首都大学生课外学术科技作品竞赛北京赛区 二等奖", en: "Qingchuang Beijing 2025 "Challenge Cup" Capital University Students' Extracurricular Academic and Technological Works Competition - Beijing Region Second Prize" }}
-    { year: "2024", title: { zh: "中国国际大学生创新大赛（2024）北京赛区 二等奖", en: "China International University Students' Innovation Competition (2024) - Beijing Region Second Prize" }}
-    { year: "2024", title: { zh: "中国国际大学生创新大赛（2024）北京赛区 二等奖", en: "China International University Students' Innovation Competition (2024) - Beijing Region Second Prize" }}
-    { year: "2024", title: { zh: "第15届北京市大学生化学实验竞赛 一等奖", en: "The 15th Beijing University Students' Chemistry Experiment Competition First Prize" }}
-    { year: "2024", title: { zh: "第十五届全国大学生数学竞赛（非数A类） 三等奖", en: "The 15th National College Students' Mathematics Competition (Non-Mathematics A Category) Third Prize" }}
-    { year: "2024", title: { zh: "第 31 届“地光杯”足球赛甲组（2024） 冠军", en: "The 31st "DiGuang Cup" Football Tournament - Group A (2024)  Champion" }}
-  ],
-
-  links: [
-    { label: "Google Scholar", url: "" },
-    { label: "ORCID", url: "https://orcid.org/0009-0005-2339-2881" },
-    { label: "GitHub", url: "https://github.com/XuanYaWangYiKunHe" },
-    { label: "ResearchGate", url: "" },
-    { label: "CV", url: "" },
-  ],
+  {
+    year: "2025",
+    title: {
+      zh: "青创北京2025年“挑战杯”首都大学生课外学术科技作品竞赛北京赛区 二等奖",
+      en: "Qingchuang Beijing 2025 “Challenge Cup” Capital University Students' Extracurricular Academic and Technological Works Competition — Beijing Region Second Prize",
+    },
+  },
+  {
+    year: "2024",
+    title: {
+      zh: "中国国际大学生创新大赛（2024）北京赛区 二等奖",
+      en: "China International University Students' Innovation Competition 2024 — Beijing Region Second Prize",
+    },
+  },
+  {
+    year: "2024",
+    title: {
+      zh: "中国国际大学生创新大赛（2024）北京赛区 二等奖",
+      en: "China International University Students' Innovation Competition 2024 — Beijing Region Second Prize",
+    },
+  },
+  {
+    year: "2024",
+    title: {
+      zh: "第15届北京市大学生化学实验竞赛 一等奖",
+      en: "The 15th Beijing University Students' Chemistry Experiment Competition — First Prize",
+    },
+  },
+  {
+    year: "2024",
+    title: {
+      zh: "第十五届全国大学生数学竞赛（非数A类） 三等奖",
+      en: "The 15th National College Students' Mathematics Competition, Non-Mathematics Category A — Third Prize",
+    },
+  },
+  {
+    year: "2024",
+    title: {
+      zh: "第31届“地光杯”足球赛甲组（2024）冠军",
+      en: "The 31st “DiGuang Cup” Football Tournament, Group A — Champion",
+    },
+  },
+],
 
   ui: {
     zh: {
