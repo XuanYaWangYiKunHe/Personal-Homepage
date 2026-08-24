@@ -119,14 +119,25 @@
     style: urbanTextureStyle,
     center: [121.5018, 31.2990],
     zoom: 13.25,
+    minZoom: 10,
+    maxZoom: 17,
     bearing: -2,
     pitch: 0,
-    interactive: false,
+    interactive: true,
     attributionControl: false,
     antialias: true,
     canvasContextAttributes: { alpha: true },
     renderWorldCopies: false,
   });
+
+  map.addControl(
+    new maplibregl.NavigationControl({
+      showCompass: false,
+      showZoom: true,
+      visualizePitch: false,
+    }),
+    "top-right",
+  );
 
   const campusMarker = document.createElement("div");
   campusMarker.className = "campus-location-marker";

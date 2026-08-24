@@ -191,7 +191,7 @@
     texture.width = SAMPLE_WIDTH;
     texture.height = SAMPLE_HEIGHT;
     const textureContext = texture.getContext("2d");
-    textureContext.fillStyle = "rgba(159, 24, 54, 0.72)";
+    textureContext.fillStyle = "rgba(58, 55, 50, 0.58)";
     cloud.forEach((point) => {
       if (point.strength < 0.58) return;
       const size = point.strength > 0.82 ? 1.35 : 1;
@@ -254,7 +254,7 @@
 
   function drawBackgroundGrid() {
     context.save();
-    context.strokeStyle = "rgba(159, 24, 54, 0.022)";
+    context.strokeStyle = "rgba(58, 55, 50, 0.018)";
     context.lineWidth = 1;
     const step = viewportWidth < 700 ? 52 : 70;
     context.beginPath();
@@ -288,8 +288,8 @@
     const centerY = viewportHeight * 0.53;
     const fromShape = shapes[fromIndex];
     const toShape = shapes[toIndex];
-    const emphasisByStage = [0.92, 1.2, 1.2, 0.92, 0.92];
-    const opacityByStage = [0.44, 0.7, 0.7, 0.44, 0.44];
+    const emphasisByStage = [0.9, 1.16, 1.16, 0.9, 0.9];
+    const opacityByStage = [0.32, 0.55, 0.55, 0.32, 0.32];
     const emphasis = emphasisByStage[fromIndex] + (emphasisByStage[toIndex] - emphasisByStage[fromIndex]) * mix;
     const opacity = opacityByStage[fromIndex] + (opacityByStage[toIndex] - opacityByStage[fromIndex]) * mix;
 
@@ -308,7 +308,7 @@
     drawDetail(toIndex, mix * 0.36);
 
     context.save();
-    context.fillStyle = `rgba(159, 24, 54, ${opacity})`;
+    context.fillStyle = `rgba(58, 55, 50, ${opacity})`;
     for (let index = 0; index < particles.length; index += 1) {
       const particle = particles[index];
       const from = fromShape[index];
@@ -333,6 +333,35 @@
       }
       const sourceStrength = from.strength + (to.strength - from.strength) * mix;
       const size = particle.radius * (0.74 + sourceStrength * 0.38) * emphasis;
+      context.fillRect(x, y, size, size);
+    }
+
+    // 在淡墨主体上以极低密度点染复旦红，保留品牌识别但不破坏水墨层级。
+    context.fillStyle = `rgba(159, 24, 54, ${opacity * 0.62})`;
+    for (let index = 17; index < particles.length; index += 37) {
+      const particle = particles[index];
+      const from = fromShape[index];
+      const to = toShape[index];
+      const nx = from.x + (to.x - from.x) * mix;
+      const ny = from.y + (to.y - from.y) * mix;
+      const breathe = reducedMotion ? 0 : Math.sin(time * 0.00048 * particle.drift + particle.seed) * 0.72;
+      let x = centerX + (nx - 0.5) * scale * 1.46 + breathe;
+      let y = centerY + (ny - 0.5) * scale + Math.cos(time * 0.0004 + particle.seed) * (reducedMotion ? 0 : 0.48);
+      if (!reducedMotion && pointer.strength > 0.01) {
+        const influenceRadius = viewportWidth < 700 ? 68 : 92;
+        const deltaX = x - pointer.x;
+        const deltaY = y - pointer.y;
+        const distanceSquared = deltaX * deltaX + deltaY * deltaY;
+        if (distanceSquared < influenceRadius * influenceRadius) {
+          const distance = Math.max(1, Math.sqrt(distanceSquared));
+          const falloff = 1 - distance / influenceRadius;
+          const nudge = falloff * falloff * 5.5 * pointer.strength;
+          x += (deltaX / distance) * nudge;
+          y += (deltaY / distance) * nudge;
+        }
+      }
+      const sourceStrength = from.strength + (to.strength - from.strength) * mix;
+      const size = particle.radius * (0.78 + sourceStrength * 0.32) * emphasis;
       context.fillRect(x, y, size, size);
     }
     context.restore();
